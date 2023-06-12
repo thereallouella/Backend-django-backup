@@ -5,10 +5,10 @@
 {% endblock subject %}
 
 {% block text_body %}
-{% blocktrans %}iactivate sa imng email madi .{% endblocktrans %}
+{#{% blocktrans %}iactivate sa imng email madi .{% endblocktrans %}#}
 
 {% trans "Please go to the following page to activate account:" %}
-http://192.168.1.4:8000/{{ url|safe }}
+{{ protocol }}://{{ domain }}/{{ url|safe }}
 
 {% trans "Thanks for using our site!" %}
 
@@ -18,6 +18,6 @@ http://192.168.1.4:8000/{{ url|safe }}
 {% block html_body %}
 
 <p>{% trans "Please go to the following page to activate account:" %} </p>
-    <p><a href="http://192.168.1.4:8000/{{ url|safe }}" style="background-color: #1f2937;  width:110px;border-radius: 10px;margin-top:20px;color:white;font-size:19px; padding:15px 20px 15px 20px;text-decoration: none;"  href="">Proceed to Activation</a>
+    <p><a href="{{ protocol }}://{{ domain }}/{{ url|safe }}" style="background-color: #1f2937;  width:110px;border-radius: 10px;margin-top:20px;color:white;font-size:19px; padding:15px 20px 15px 20px;text-decoration: none;"  href="">Proceed to Activation</a>
 </p>
 {% endblock html_body %}

@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.views.generic import TemplateView
+from accounts.views import activate
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,6 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.jwt')),
     path('api/v1/', include('djoser.social.urls')),
+    # path for activation email for http://192.168.88.110:8000/activation/MTQ/bpnx1e-52e82dcd84f4102877000067ce67caf7
+    re_path(r'^activation/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', activate, name='activate'),
 ]

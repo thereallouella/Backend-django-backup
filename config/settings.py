@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
     'localhost',
 ]
 
+
 # python manage.py 0.0.0.0:8000
 # Application definition
 INSTALLED_APPS = [
@@ -100,8 +101,8 @@ DATABASES = {
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'geyadevs@gmail.com'
-EMAIL_HOST_PASSWORD = 'iyypbkzfsvgyhlpo'
+EMAIL_HOST_USER = 'djaldave@gmail.com'
+EMAIL_HOST_PASSWORD = 'bgxothdcunftxvmw'
 EMAIL_USE_TLS = True
 
 # FRONTEND_URL = 'http://192.168.1.4:8000'
@@ -178,7 +179,9 @@ DJOSER = {
     'EMAIL': {
         'activation': 'accounts.email.CustomeActivationEmail',
 
+
     }
+
 
 }
 

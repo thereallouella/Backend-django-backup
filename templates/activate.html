@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    {% comment %}get the activation_success value{% endcomment %}
+    {% if activation_success %}
+        <h1>Activation Successful</h1>
+        <p>Your account has been activated successfully. You can now login to your account.</p>
+    {% else %}
+        <h1>Activation Failed</h1>
+        <p>Sorry, your account could not be activated. Please try again later.</p>
+    {% endif %}
+</body>
+</html>
