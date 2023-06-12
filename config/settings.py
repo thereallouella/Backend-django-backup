@@ -14,11 +14,11 @@ from pathlib import Path
 
 import django
 from django.utils.encoding import force_str
+
 django.utils.encoding.force_text = force_str
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -30,12 +30,12 @@ SECRET_KEY = 'django-insecure-^43&o!2c9yh)ewvg+ryjp4j5jap3b@i!55gjyq(4l-(l5s33#)
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '192.168.1.4',
-    'localhost'
-  
+    '192.168.88.110',
+    '127.0.0.1',
+    'localhost',
 ]
 
-#python manage.py 0.0.0.0:8000
+# python manage.py 0.0.0.0:8000
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -58,18 +58,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "corsheaders.middleware.CorsMiddleware",
-    
+
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
-
 
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,18 +83,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'trydjango_db',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost'
-        
+
     }
 }
 
@@ -106,7 +104,7 @@ EMAIL_HOST_USER = 'geyadevs@gmail.com'
 EMAIL_HOST_PASSWORD = 'iyypbkzfsvgyhlpo'
 EMAIL_USE_TLS = True
 
-#FRONTEND_URL = 'http://192.168.1.4:8000'
+# FRONTEND_URL = 'http://192.168.1.4:8000'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -126,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -138,13 +135,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -152,8 +146,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES':[
-      'rest_framework.permissions.IsAuthenticated',  
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -161,32 +155,31 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-   'AUTH_HEADER_TYPES': ('JWT',),
+    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 DJOSER = {
-    'LOGIN_FIELD' : 'email',
+    'LOGIN_FIELD': 'email',
     'USERNAME_RESET_CONFIRM_RETYPE': True,
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION':True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION':True,
-    'SEND_CONFIRMATION_EMAIL':True,
-    'SET_USERNAME_RETYPE':True,
-    'SET_PASSWORD_RETYPE':True,
-    'USERNAME_RESET_CONFIRM_URL':'email/reset/confirm/{uid}/{token}',
-    'PASSWORD_RESET_CONFIRM_URL':'reset-password/{uid}/{token}',
+    'USERNAME_CHANGED_EMAIL_CONFIRMATION': True,
+    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
+    'SEND_CONFIRMATION_EMAIL': True,
+    'SET_USERNAME_RETYPE': True,
+    'SET_PASSWORD_RETYPE': True,
+    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
+    'PASSWORD_RESET_CONFIRM_URL': 'reset-password/{uid}/{token}',
     'ACTIVATION_URL': 'activation/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL':True,
+    'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
         'user_create': 'accounts.serializers.UserCreateSerializer',
         'user': 'accounts.serializers.UserCreateSerializer',
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
     'EMAIL': {
-            'activation': 'accounts.email.CustomeActivationEmail',
-            
-    }
-    
-}
+        'activation': 'accounts.email.CustomeActivationEmail',
 
+    }
+
+}
 
 AUTH_USER_MODEL = 'accounts.UserAccount'
