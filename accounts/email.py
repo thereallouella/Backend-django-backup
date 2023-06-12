@@ -3,12 +3,11 @@ from django.contrib.auth.tokens import default_token_generator
 from djoser.email import ActivationEmail
 
 from djoser import utils
-from djoser.conf import settings as djangosettings
 from djoser.conf import settings
 
 
 # For account activation using email address
-class CustomeActivationEmail(ActivationEmail):
+class CustomActivationEmail(ActivationEmail):
     template_name = "email/activation.html"
 
     def get_context_data(self):
