@@ -5,9 +5,13 @@ from django.shortcuts import redirect
 from django.views.generic import TemplateView
 from django.utils.http import urlsafe_base64_decode
 from djoser.views import UserViewSet
+from rest_framework import viewsets
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from accounts.serializers import CustomUserSerializer
+
+from accounts.models import Files
+from accounts.serializers import CustomUserSerializer, FilesSerializer
 
 User = get_user_model()
 
@@ -36,3 +40,13 @@ class CustomUserViewSet(UserViewSet):
     def me(self, request, *args, **kwargs):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
+
+
+class FilesViewSets(viewsets.ModelViewSet):
+    queryset = Files.objects.all()
+    serializer_class = FilesSerializer
+    # permission_classes = [IsAuthenticated]
+    # parser_classes = (MultiPartParser, FormParser)
+
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)

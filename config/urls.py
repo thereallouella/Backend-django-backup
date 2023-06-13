@@ -13,10 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
-from django.views.generic import TemplateView
+from rest_framework import routers
+
 from accounts.views import activate
+from accounts.views import FilesViewSets
+from config import settings
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,6 +30,6 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.jwt')),
     path('api/v1/', include('djoser.social.urls')),
-    # path for activation email for http://192.168.88.110:8000/activation/MTQ/bpnx1e-52e82dcd84f4102877000067ce67caf7
     re_path(r'^activation/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', activate, name='activate'),
-]
+    path('api/v1/files/', FilesViewSets.as_view({'get': 'list', 'post': 'create'}), name='files'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

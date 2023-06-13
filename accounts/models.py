@@ -4,6 +4,7 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 
+
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -15,6 +16,7 @@ class UserAccountManager(BaseUserManager):
         user.save()
 
         return user
+
 
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=255, unique=True)
@@ -34,6 +36,12 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.last_name
 
-
     def __str__(self):
         return self.email
+
+
+class Files(models.Model):
+    file = models.FileField(upload_to='files/')
+
+    def __str__(self):
+        return self.file.name
