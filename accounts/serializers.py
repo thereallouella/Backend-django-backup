@@ -24,3 +24,7 @@ class FilesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Files
         fields = ['id', 'file']
+
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)

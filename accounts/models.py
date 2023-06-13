@@ -39,6 +39,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
 
 class Files(models.Model):
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     file = models.FileField(upload_to='files/')
 
     def __str__(self):
