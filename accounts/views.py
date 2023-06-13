@@ -1,19 +1,17 @@
-from django.shortcuts import render
-from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
-from django.shortcuts import redirect
-from django.views.generic import TemplateView
+from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import render
 from django.utils.http import urlsafe_base64_decode
 from djoser.views import UserViewSet
 from rest_framework import viewsets
-from rest_framework.parsers import MultiPartParser, FormParser
-from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from accounts.models import Files
 from accounts.serializers import CustomUserSerializer, FilesSerializer
 
 User = get_user_model()
+
 
 def activate(request, uid, token):
     try:
@@ -45,8 +43,3 @@ class CustomUserViewSet(UserViewSet):
 class FilesViewSets(viewsets.ModelViewSet):
     queryset = Files.objects.all()
     serializer_class = FilesSerializer
-    # permission_classes = [IsAuthenticated]
-    # parser_classes = (MultiPartParser, FormParser)
-
-    # def perform_create(self, serializer):
-    #     serializer.save(user=self.request.user)

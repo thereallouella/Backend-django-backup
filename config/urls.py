@@ -16,13 +16,10 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
-from rest_framework import routers
 
-from accounts.views import activate
 from accounts.views import FilesViewSets
+from accounts.views import activate
 from config import settings
-
-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
