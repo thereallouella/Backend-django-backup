@@ -1,4 +1,3 @@
-# Create your models here.
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.db import models
 
@@ -38,9 +37,17 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-class Files(models.Model):
+class Listing(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='files/')
+    title = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    distant = models.CharField(max_length=255)
+    tenant = models.CharField(max_length=255)
+    essentials = models.TextField()
+    contact_number = models.CharField(max_length=255)
+    picture = models.ImageField(upload_to='listings/')
 
     def __str__(self):
-        return self.file.name
+        return self.title

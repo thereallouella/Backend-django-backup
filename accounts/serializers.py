@@ -2,7 +2,7 @@ from djoser.serializers import UserCreateSerializer
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from accounts.models import Files
+from accounts.models import Listing
 
 User = get_user_model()
 
@@ -20,10 +20,11 @@ class CustomUserSerializer(UserCreateSerializer):
         fields = ('id', 'email', 'first_name', 'last_name', 'password', 'is_active')
 
 
-class FilesSerializer(serializers.ModelSerializer):
+class ListingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Files
-        fields = ['id', 'file']
+        model = Listing
+        fields = ['id', 'title', 'location', 'description', 'price', 'distant', 'tenant', 'essentials', 'contact_number',
+                  'picture']
 
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user

@@ -1,5 +1,4 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import render
 from django.utils.http import urlsafe_base64_decode
 from djoser.views import UserViewSet
@@ -7,8 +6,8 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from accounts.models import Files
-from accounts.serializers import CustomUserSerializer, FilesSerializer
+from accounts.models import Listing
+from accounts.serializers import CustomUserSerializer, ListingSerializer
 
 User = get_user_model()
 
@@ -40,6 +39,6 @@ class CustomUserViewSet(UserViewSet):
         return Response(serializer.data)
 
 
-class FilesViewSets(viewsets.ModelViewSet):
-    queryset = Files.objects.all()
-    serializer_class = FilesSerializer
+class ListingViewSet(viewsets.ModelViewSet):
+    queryset = Listing.objects.all()
+    serializer_class = ListingSerializer
